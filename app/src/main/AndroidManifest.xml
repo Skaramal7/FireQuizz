@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FireQuizz">
         <activity
+            android:name=".score.ScoreActiviry"
+            android:exported="false" />
+        <activity
             android:name=".Question.QuestionActivity"
             android:exported="false" />
         <activity
