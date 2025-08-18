@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.google.gms.google.services)
 }
 
+
 android {
     namespace = "com.example.firequizz"
     compileSdk = 36
@@ -56,6 +57,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.firebase.database)
+    implementation(libs.firebase.auth)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -66,4 +68,6 @@ dependencies {
 
     implementation("androidx.constraintlayout:constraintlayout-compose:1.1.1")
     implementation("io.coil-kt:coil-compose:2.7.0")
+    implementation("androidx.compose.runtime:runtime-livedata:composeBom")
+    implementation("com.google.firebase:firebase-core:21.1.1")
 }

@@ -2,6 +2,7 @@ package com.example.firequizz.ui.feature.home.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -22,7 +23,9 @@ import androidx.compose.ui.unit.sp
 import com.example.firequizz.R
 
 @Composable
-fun TopUserSection() {
+fun TopUserSection(
+    onProfileClick: () -> Unit
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -32,7 +35,9 @@ fun TopUserSection() {
         Image(
             painter = painterResource(R.drawable.profile),
             contentDescription = null,
-            Modifier.size(55.dp)
+            Modifier
+                .size(55.dp)
+                .clickable(onClick = onProfileClick)
             )
 
         Spacer(modifier = Modifier.width(16.dp))

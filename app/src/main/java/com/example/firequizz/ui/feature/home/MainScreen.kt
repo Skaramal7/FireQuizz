@@ -107,13 +107,13 @@ fun MainScreenPreview() {
         QuizzModel(
             id = 1,
             title = "Sample Quizz 1",
-            lenght = 10,
+            length = 10,
             questionList = emptyList()
         ),
         QuizzModel(
             id = 2,
             title = "Sample Quizz 2",
-            lenght = 5,
+            length = 5,
             questionList = emptyList()
         )
     )

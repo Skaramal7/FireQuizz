@@ -1,4 +1,4 @@
-package com.example.todolist2.ui.feature
+package com.example.firequizz.ui.feature
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
@@ -24,22 +24,24 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
-import com.example.todolist2.navigation.ListRoute
-import com.example.todolist2.ui.feature.auth.AuthState
-import com.example.todolist2.ui.feature.auth.AuthViewModel
-import com.example.todolist2.ui.theme.Gray
-import com.example.todolist2.ui.theme.LightGray
-import com.example.todolist2.ui.theme.TodoList2Theme
+import com.example.firequizz.R
+import com.example.firequizz.ui.feature.auth.AuthState
+import com.example.firequizz.ui.feature.auth.AuthViewModel
+import com.example.firequizz.ui.feature.home.MainScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LogInScreen(modifier: Modifier = Modifier, navController: NavController, authViewModel: AuthViewModel) {
+fun LogInScreen(
+    authViewModel: AuthViewModel,
+    onLoginSuccess: () -> Unit,
+    onSignUp: () -> Unit
+) {
     var email by remember {
         mutableStateOf("")
     }
@@ -54,7 +56,7 @@ fun LogInScreen(modifier: Modifier = Modifier, navController: NavController, aut
     LaunchedEffect(authState.value) {
         when (authState.value) {
             is AuthState.Autheticated -> {
-                navController.navigate(ListRoute)
+                onLoginSuccess()
             }
 
             is AuthState.Error -> Toast.makeText(
@@ -74,8 +76,8 @@ fun LogInScreen(modifier: Modifier = Modifier, navController: NavController, aut
                     Text(text = "To-Do List", fontWeight = FontWeight.SemiBold)
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Gray,
-                    titleContentColor = LightGray,
+                    containerColor = Color.Gray,
+                    titleContentColor = colorResource(R.color.grey),
                 )
             )
         },
@@ -83,7 +85,8 @@ fun LogInScreen(modifier: Modifier = Modifier, navController: NavController, aut
 
 
         Column(
-            modifier = modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxSize()
                 .consumeWindowInsets(paddingValues),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
@@ -114,7 +117,7 @@ fun LogInScreen(modifier: Modifier = Modifier, navController: NavController, aut
             Spacer(modifier = Modifier.height(8.dp))
 
             TextButton(onClick = {
-                navController.navigate("signup")
+                onSignUp()
             }) {
                 Text(text ="Don't have an account?")
             }
@@ -124,13 +127,10 @@ fun LogInScreen(modifier: Modifier = Modifier, navController: NavController, aut
 
 @Preview
 @Composable
-private fun LogInPreview() {
-    TodoList2Theme {
-        LogInScreen(
-            modifier = Modifier,
-            navController = rememberNavController(),
-            authViewModel = AuthViewModel()
-        )
-    }
-
+fun LogInScreenPreview() {
+    LogInScreen(
+        authViewModel = AuthViewModel(),
+        onLoginSuccess = {},
+        onSignUp = {}
+    )
 }

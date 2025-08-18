@@ -109,7 +109,7 @@ fun QuestionScreen(
                     }
                     IconButton(
                         onClick = {
-                            if (state.currentIndex == (quizz.lenght - 1)) {
+                            if (state.currentIndex == (quizz.length - 1)) {
                                 onFinish(state.score)
                             } else {
                                 selectedAnswer = null
@@ -195,7 +195,7 @@ fun QuestionScreenPreview() {
     val dquizz = QuizzModel(
         id = 1,
         title = "Sample Quizz",
-        lenght = 10,
+        length = 10,
         questionList = listOf(
             QuestionModel(
                 question = "What is the capital of France?",

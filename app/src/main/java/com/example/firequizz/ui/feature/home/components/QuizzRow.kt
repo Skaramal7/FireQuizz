@@ -70,7 +70,7 @@ fun QuizzRow(
             Spacer(Modifier.height(6.dp))
 
             Text(
-                text = "Questions: ${quizz.lenght}",
+                text = "Questions: ${quizz.length}",
                 fontSize = 14.sp,
                 color = Color.Gray
             )
@@ -84,7 +84,7 @@ fun QuizzRowPreview() {
     val quizz = QuizzModel(
         id = 1,
         title = "Sample Quizz",
-        lenght = 5,
+        length = 5,
         questionList = emptyList()
     )
     QuizzRow(quizz = quizz)

@@ -1,4 +1,4 @@
-package com.example.todolist2.ui.feature
+package com.example.firequizz.ui.feature
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -29,24 +28,20 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.platform.LocalContext
-import com.example.todolist2.domain.todo1
-import com.example.todolist2.domain.todo2
-import com.example.todolist2.domain.todo3
-import com.example.todolist2.navigation.ListRoute
-import com.example.todolist2.ui.feature.auth.AuthState
-import com.example.todolist2.ui.feature.auth.AuthViewModel
-import com.example.todolist2.ui.feature.list.ListContent
-import com.example.todolist2.ui.theme.Gray
-import com.example.todolist2.ui.theme.LightGray
-import com.example.todolist2.ui.theme.TodoList2Theme
+import androidx.compose.ui.res.colorResource
+import com.example.firequizz.R
+import com.example.firequizz.ui.feature.auth.AuthState
+import com.example.firequizz.ui.feature.auth.AuthViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SignUpScreen(modifier: Modifier = Modifier, navController: NavController, authViewModel: AuthViewModel) {
+fun SignUpScreen(
+    authViewModel: AuthViewModel,
+    onLoginSuccess: () -> Unit,
+    onLogIn: () -> Unit
+) {
     var email by remember {
         mutableStateOf("")
     }
@@ -61,7 +56,7 @@ fun SignUpScreen(modifier: Modifier = Modifier, navController: NavController, au
     LaunchedEffect(authState.value) {
         when (authState.value) {
             is AuthState.Autheticated -> {
-                navController.navigate(ListRoute)
+                onLoginSuccess()
             }
             is AuthState.Error -> Toast.makeText(
                 context,
@@ -80,8 +75,8 @@ fun SignUpScreen(modifier: Modifier = Modifier, navController: NavController, au
                     Text(text = "To-Do List", fontWeight = FontWeight.SemiBold)
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Gray,
-                    titleContentColor = LightGray,
+                    containerColor = Color.Gray,
+                    titleContentColor = colorResource(R.color.grey),
                 )
             )
         },
@@ -89,7 +84,8 @@ fun SignUpScreen(modifier: Modifier = Modifier, navController: NavController, au
 
 
         Column(
-            modifier = modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxSize()
                 .consumeWindowInsets(paddingValues),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
@@ -120,7 +116,7 @@ fun SignUpScreen(modifier: Modifier = Modifier, navController: NavController, au
             Spacer(modifier = Modifier.height(8.dp))
 
             TextButton(onClick = {
-                navController.navigate("login")
+                onLogIn()
             }) {
                 Text(text ="Already have an account?")
             }
@@ -128,14 +124,13 @@ fun SignUpScreen(modifier: Modifier = Modifier, navController: NavController, au
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
-private fun SingUpPreview() {
-    TodoList2Theme {
-        SignUpScreen(
-            modifier = Modifier,
-            navController = rememberNavController(),
-            authViewModel = AuthViewModel()
-        )
-    }
+fun SignUpScreenPreview() {
+    SignUpScreen(
+        authViewModel = AuthViewModel(),
+        onLoginSuccess = {},
+        onLogIn = {}
+    )
 }
