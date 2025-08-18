@@ -8,6 +8,7 @@ import androidx.activity.compose.setContent
 import androidx.core.content.ContextCompat
 import com.example.firequizz.Question.Model.QuestionModel
 import com.example.firequizz.Question.QuestionActivity
+import com.example.firequizz.leaderboard.LeaderboardActivity
 import com.example.firequizz.ui.feature.Dashboard.MainScreen
 
 class MainActivity : ComponentActivity() {
@@ -23,7 +24,9 @@ class MainActivity : ComponentActivity() {
                     intent.putParcelableArrayListExtra("list", ArrayList(questionList()))
                     startActivity(intent)
                 },
-                onBoardClick = { /* Handle board click */ }
+                onBoardClick = {
+                    startActivity(Intent(this, LeaderboardActivity::class.java))
+                }
             )
         }
     }
