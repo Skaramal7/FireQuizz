@@ -39,6 +39,7 @@ import com.example.firequizz.ui.feature.home.components.TopUserSection
 fun MainScreen(
     onQuizzClick: (quizz: QuizzModel) -> Unit,
     onBoardClick: () -> Unit = {},
+    onProfileScreen: () -> Unit = {},
     quizzList: List<QuizzModel>,
     isLoading: Boolean = true
 ) {
@@ -56,7 +57,7 @@ fun MainScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             TopUserSection(
-
+                { onProfileScreen() }
             )
 
             Banner()

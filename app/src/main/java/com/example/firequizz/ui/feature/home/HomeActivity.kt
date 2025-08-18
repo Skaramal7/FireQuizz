@@ -16,6 +16,7 @@ import com.example.firequizz.Question.Model.QuizzModel
 import com.example.firequizz.Question.QuestionActivity
 import com.example.firequizz.R
 import com.example.firequizz.leaderboard.LeaderboardActivity
+import com.example.firequizz.ui.feature.profile.ProfileActivity
 import com.google.firebase.database.FirebaseDatabase
 
 class HomeActivity : ComponentActivity() {
@@ -40,6 +41,9 @@ class HomeActivity : ComponentActivity() {
                 },
                 onBoardClick = {
                     startActivity(Intent(this, LeaderboardActivity::class.java))
+                },
+                onProfileScreen = {
+                    startActivity(Intent(this, ProfileActivity::class.java))
                 },
                 quizzModelListState,
                 isLoading.value
