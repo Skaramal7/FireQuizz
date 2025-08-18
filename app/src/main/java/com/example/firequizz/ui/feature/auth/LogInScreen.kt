@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
@@ -31,9 +32,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.firequizz.R
+import com.example.firequizz.data.currentUser.setUserData
+import com.example.firequizz.leaderboard.UserModel
 import com.example.firequizz.ui.feature.auth.AuthState
 import com.example.firequizz.ui.feature.auth.AuthViewModel
 import com.example.firequizz.ui.feature.home.MainScreen
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.firestore
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -42,6 +47,7 @@ fun LogInScreen(
     onLoginSuccess: () -> Unit,
     onSignUp: () -> Unit
 ) {
+    var db = Firebase.firestore
     var email by remember {
         mutableStateOf("")
     }
@@ -73,11 +79,11 @@ fun LogInScreen(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(text = "To-Do List", fontWeight = FontWeight.SemiBold)
+                    Text(text = "FireQuizz App", fontWeight = FontWeight.SemiBold)
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color.Gray,
-                    titleContentColor = colorResource(R.color.grey),
+                    containerColor = colorResource(R.color.orange),
+                    titleContentColor = colorResource(R.color.white),
                 )
             )
         },
@@ -110,7 +116,8 @@ fun LogInScreen(
 
             Button(onClick = {
                 authViewModel.login(email, password)
-            }, enabled = authState.value != AuthState.Loading) {
+            }, enabled = authState.value != AuthState.Loading,
+                colors = ButtonDefaults.buttonColors(colorResource(R.color.orange))) {
                 Text(text = "Log In")
             }
 
@@ -119,7 +126,7 @@ fun LogInScreen(
             TextButton(onClick = {
                 onSignUp()
             }) {
-                Text(text ="Don't have an account?")
+                Text(text ="Don't have an account?", color = colorResource(R.color.orange))
             }
         }
     }

@@ -16,6 +16,7 @@ import androidx.core.content.ContextCompat
 import com.example.firequizz.Question.Model.QuestionModel
 import com.example.firequizz.Question.Model.QuizzModel
 import com.example.firequizz.Question.QuestionActivity
+import com.example.firequizz.data.currentUser
 import com.example.firequizz.leaderboard.LeaderboardActivity
 import com.example.firequizz.ui.feature.auth.AuthActivity
 import com.example.firequizz.ui.feature.auth.AuthViewModel
@@ -29,7 +30,10 @@ class MainActivity : ComponentActivity() {
         window.statusBarColor = ContextCompat.getColor(this, R.color.grey)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
 
-        val authViewModel : AuthViewModel by viewModels()
+        currentUser.id = ""
+        currentUser.name = ""
+        currentUser.pic = ""
+        currentUser.score = 0
 
         setContent {
             startActivity(Intent(this, AuthActivity::class.java))

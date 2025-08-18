@@ -28,10 +28,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.firequizz.R
 import com.example.firequizz.ui.feature.auth.AuthViewModel
+import com.google.firebase.auth.FirebaseAuth
 
 @Composable
 fun ProfileScreen(
-    authViewModel: AuthViewModel
+    authViewModel: AuthViewModel,
+    onSignOut: () -> Unit
 ) {
     Box(
         modifier = Modifier
@@ -98,7 +100,7 @@ fun ProfileScreen(
                 verticalAlignment = Alignment.Bottom
             ){
                 TextButton(onClick = {
-                    authViewModel.signout()
+                    onSignOut()
                 },
                     modifier = Modifier.padding(0.dp, 300.dp, 0.dp, 0.dp)) {
                     Text(text = "Sign out", color = colorResource(R.color.orange))
@@ -113,5 +115,5 @@ fun ProfileScreen(
 @Composable
 fun ProfileScreenPreview() {
     val authViewModel = AuthViewModel()
-    ProfileScreen(authViewModel)
+    ProfileScreen(authViewModel, onSignOut = {})
 }

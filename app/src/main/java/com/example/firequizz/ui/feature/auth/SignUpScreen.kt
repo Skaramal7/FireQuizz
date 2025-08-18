@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
@@ -78,11 +79,11 @@ fun SignUpScreen(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(text = "To-Do List", fontWeight = FontWeight.SemiBold)
+                    Text(text = "FireQuizz App", fontWeight = FontWeight.SemiBold)
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color.Gray,
-                    titleContentColor = colorResource(R.color.grey),
+                    containerColor = colorResource(R.color.orange),
+                    titleContentColor = colorResource(R.color.white),
                 )
             )
         },
@@ -121,7 +122,9 @@ fun SignUpScreen(
 
             Button(onClick = {
                 authViewModel.signup(username, email, password)
-            }, enabled = authState.value != AuthState.Loading) {
+            }, enabled = authState.value != AuthState.Loading,
+            colors = ButtonDefaults.buttonColors(colorResource(R.color.orange))
+                ) {
                 Text(text = "Sign Up")
             }
 
@@ -130,7 +133,7 @@ fun SignUpScreen(
             TextButton(onClick = {
                 onLogIn()
             }) {
-                Text(text ="Already have an account?")
+                Text(text ="Already have an account?", color = colorResource(R.color.orange))
             }
         }
     }

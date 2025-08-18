@@ -21,6 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.firequizz.R
+import com.example.firequizz.data.currentUser
 
 @Composable
 fun TopUserSection(
@@ -42,7 +43,7 @@ fun TopUserSection(
 
         Spacer(modifier = Modifier.width(16.dp))
 
-        Text(text = "Hi, [username]", fontSize = 20.sp, modifier = Modifier.weight(1f))
+        Text(text = "Hi, ${currentUser.name}", fontSize = 20.sp, modifier = Modifier.weight(1f))
 
         Row(
             modifier = Modifier
@@ -60,7 +61,7 @@ fun TopUserSection(
 
             Spacer(modifier = Modifier.width(15.dp))
 
-            Text(text = "2400", color = colorResource(R.color.white), fontSize = 16.sp)
+            Text(text = "${currentUser.score}", color = colorResource(R.color.white), fontSize = 16.sp)
 
             Spacer(modifier = Modifier.width(16.dp))
 

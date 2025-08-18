@@ -22,6 +22,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.firequizz.R
+import com.example.firequizz.data.currentUser
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.firestore
 
 @Composable
 fun ScoreScreen(

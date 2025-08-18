@@ -29,6 +29,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.firequizz.Question.Model.QuizzModel
 import com.example.firequizz.R
+import com.example.firequizz.ui.feature.auth.AuthViewModel
 import com.example.firequizz.ui.feature.home.components.Banner
 import com.example.firequizz.ui.feature.home.components.BottomNavigationBar
 import com.example.firequizz.ui.feature.home.components.QuizzListHeader
@@ -107,18 +108,14 @@ fun MainScreen(
 @Composable
 fun MainScreenPreview() {
     val quizzList = listOf(
-        QuizzModel(
-            id = 1,
-            title = "Sample Quizz 1",
-            length = 10,
-            questionList = emptyList()
-        ),
-        QuizzModel(
-            id = 2,
-            title = "Sample Quizz 2",
-            length = 5,
-            questionList = emptyList()
-        )
+        QuizzModel(id = 1, title = "Math Quiz", length = 10, score = 0, questionList = emptyList()),
+        QuizzModel(id = 2, title = "Science Quiz", length = 15, score = 0, questionList = emptyList())
     )
-    MainScreen(onQuizzClick = {}, onBoardClick = {}, quizzList = quizzList)
+    MainScreen(
+        onQuizzClick = {},
+        onBoardClick = {},
+        onProfileScreen = {},
+        quizzList = quizzList,
+        isLoading = false
+    )
 }

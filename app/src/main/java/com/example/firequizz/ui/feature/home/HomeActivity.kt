@@ -15,9 +15,14 @@ import androidx.core.content.ContextCompat
 import com.example.firequizz.Question.Model.QuizzModel
 import com.example.firequizz.Question.QuestionActivity
 import com.example.firequizz.R
+import com.example.firequizz.data.currentUser
+import com.example.firequizz.data.currentUser.setUserData
 import com.example.firequizz.leaderboard.LeaderboardActivity
+import com.example.firequizz.leaderboard.UserModel
 import com.example.firequizz.ui.feature.profile.ProfileActivity
+import com.google.firebase.Firebase
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.firestore
 
 class HomeActivity : ComponentActivity() {
     lateinit var quizzModelListState: SnapshotStateList<QuizzModel>
@@ -32,6 +37,7 @@ class HomeActivity : ComponentActivity() {
             isLoading = remember { mutableStateOf(true) }
             quizzModelListState = remember { mutableStateListOf<QuizzModel>() }
             getDataFromFirebase()
+            updateUserData()
 
             MainScreen(
                 onQuizzClick = { selectedQuizz ->
@@ -51,6 +57,21 @@ class HomeActivity : ComponentActivity() {
         }
     }
 
+    private fun updateUserData(){
+        val db = Firebase.firestore
+
+        if(currentUser.id != "") {
+            db.collection("users").document(currentUser.id).get().addOnSuccessListener {
+                val user = UserModel(
+                    name = it["name"].toString(),
+                    pic = it["pic"].toString(),
+                    score = it["score"].toString().toInt(),
+                    id = it["id"].toString()
+                )
+                setUserData(user)
+            }
+        }
+    }
     private fun getDataFromFirebase(){
         isLoading.value = true
         FirebaseDatabase.getInstance().reference
