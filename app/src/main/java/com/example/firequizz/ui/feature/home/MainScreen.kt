@@ -55,7 +55,9 @@ fun MainScreen(
                 .padding(top = 10.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            TopUserSection()
+            TopUserSection(
+
+            )
 
             Banner()
             Spacer(modifier = Modifier.height(32.dp))

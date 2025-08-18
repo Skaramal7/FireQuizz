@@ -87,7 +87,7 @@ fun LeaderRow(
 @Preview
 @Composable
 fun LeaderRowPreview() {
-    val user = UserModel(id = 1, name = "John Doe", pic = "user_pic_1", score = 100)
+    val user = UserModel(id = "1", name = "John Doe", pic = "user_pic_1", score = 100)
     LeaderRow(user = user, rank = 1)
 }
 

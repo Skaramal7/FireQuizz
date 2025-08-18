@@ -171,19 +171,19 @@ fun TopTreeSection(
 fun TopTreeSectionPreview() {
     val users = listOf(
         UserModel(
-            id = 1,
+            id = "1",
             name = "John Doe",
             pic = "person1",
             score = 100
         ),
         UserModel(
-            id = 2,
+            id = "2",
             name = "Jane Doe",
             pic = "person2",
             score = 90
         ),
         UserModel(
-            id = 3,
+            id = "3",
             name = "Peter Pan",
             pic = "person3",
             score = 80
@@ -201,7 +201,7 @@ fun getDrawableId(name: String): Int {
 @Composable
 fun TopUserBoxPreview() {
     val user = UserModel(
-        id = 1,
+        id = "1",
         name = "John Doe",
         pic = "person1",
         score = 100

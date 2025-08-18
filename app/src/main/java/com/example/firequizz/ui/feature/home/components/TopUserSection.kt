@@ -24,7 +24,7 @@ import com.example.firequizz.R
 
 @Composable
 fun TopUserSection(
-    onProfileClick: () -> Unit
+    //onProfileClick: () -> Unit
 ) {
     Row(
         modifier = Modifier
@@ -37,7 +37,7 @@ fun TopUserSection(
             contentDescription = null,
             Modifier
                 .size(55.dp)
-                .clickable(onClick = onProfileClick)
+                //.clickable(onClick = onProfileClick)
             )
 
         Spacer(modifier = Modifier.width(16.dp))

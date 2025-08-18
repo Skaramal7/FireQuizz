@@ -3,11 +3,16 @@ package com.example.firequizz.ui.feature.auth
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.firequizz.leaderboard.UserModel
+import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.firestore
 
-class AuthViewModel : ViewModel() {
+class AuthViewModel() : ViewModel() {
     private val auth : FirebaseAuth = FirebaseAuth.getInstance()
-
+    private val db = Firebase.firestore
     private val _authState = MutableLiveData<AuthState>()
     val authState : LiveData<AuthState> = _authState
 
@@ -41,7 +46,7 @@ class AuthViewModel : ViewModel() {
             }
     }
 
-    fun signup(email : String, password : String){
+    fun signup(username: String, email : String, password : String){
 
         if(email.isEmpty() || password.isEmpty()){
             _authState.value = AuthState.Error("Email and password cannot be empty")
@@ -53,6 +58,13 @@ class AuthViewModel : ViewModel() {
             .addOnCompleteListener { task ->
                 if(task.isSuccessful){
                     _authState.value = AuthState.Autheticated
+                    val user = UserModel(
+                        name = username,
+                        pic = "",
+                        score = 0,
+                        id = auth.currentUser!!.uid
+                    )
+                    db.collection("users").document(auth.currentUser!!.uid).set(user)
                 } else{
                     _authState.value = AuthState.Error(task.exception?.message ?: "Something went wrong")
                 }

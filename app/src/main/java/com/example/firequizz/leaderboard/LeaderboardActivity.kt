@@ -25,13 +25,13 @@ class LeaderboardActivity : AppCompatActivity() {
 
     private fun loadData(): List<UserModel> {
         return listOf(
-            UserModel(1, "Sophia", "person1", 4000),
-            UserModel(1, "Laura", "person2", 3440),
-            UserModel(1, "Chloe", "person3", 5000),
-            UserModel(1, "Mary", "person4", 1200),
-            UserModel(1, "Olivia", "person5", 50),
-            UserModel(1, "Amanda", "person6", 4990),
-            UserModel(1, "Joana", "person7", 3540),
+            UserModel("2", "Sophia", "person1", 4000),
+            UserModel("3", "Laura", "person2", 3440),
+            UserModel("", "Chloe", "person3", 5000),
+            UserModel("", "Mary", "person4", 1200),
+            UserModel("", "Olivia", "person5", 50),
+            UserModel("", "Amanda", "person6", 4990),
+            UserModel("", "Joana", "person7", 3540),
         )
     }
 }

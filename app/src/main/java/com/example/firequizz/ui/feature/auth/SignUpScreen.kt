@@ -34,6 +34,8 @@ import androidx.compose.ui.res.colorResource
 import com.example.firequizz.R
 import com.example.firequizz.ui.feature.auth.AuthState
 import com.example.firequizz.ui.feature.auth.AuthViewModel
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.firestore
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -42,6 +44,10 @@ fun SignUpScreen(
     onLoginSuccess: () -> Unit,
     onLogIn: () -> Unit
 ) {
+    var username by remember {
+        mutableStateOf("")
+    }
+
     var email by remember {
         mutableStateOf("")
     }
@@ -91,6 +97,12 @@ fun SignUpScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
+            OutlinedTextField(value = username, onValueChange = {
+                username = it
+            }, label = {
+                Text(text = "Username")
+            })
+
             OutlinedTextField(value = email, onValueChange = {
                 email = it
             }, label = {
@@ -108,7 +120,7 @@ fun SignUpScreen(
             Spacer(modifier = Modifier.height(8.dp))
 
             Button(onClick = {
-                authViewModel.signup(email, password)
+                authViewModel.signup(username, email, password)
             }, enabled = authState.value != AuthState.Loading) {
                 Text(text = "Sign Up")
             }

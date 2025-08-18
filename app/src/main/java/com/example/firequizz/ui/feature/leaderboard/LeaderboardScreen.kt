@@ -49,13 +49,13 @@ fun LeaderboardScreen(
 @Composable
 fun LeaderScreenPreview() {
     val topUsers = listOf(
-        UserModel(id = 1, name = "John Doe", pic = "person1", score = 100),
-        UserModel(id = 2, name = "Jane Smith", pic = "person2", score = 90),
-        UserModel(id = 3, name = "Peter Jones", pic = "person3", score = 80)
+        UserModel(id = "1", name = "John Doe", pic = "person1", score = 100),
+        UserModel(id = "2", name = "Jane Smith", pic = "person2", score = 90),
+        UserModel(id = "3", name = "Peter Jones", pic = "person3", score = 80)
     )
     val otherUsers = listOf(
-        UserModel(id = 4, name = "Peter Jones", pic = "person3", score = 80),
-        UserModel(id = 5, name = "Alice Brown", pic = "person4", score = 70)
+        UserModel(id = "4", name = "Peter Jones", pic = "person3", score = 80),
+        UserModel(id = "5", name = "Alice Brown", pic = "person4", score = 70)
     )
     LeaderboardScreen(
         topUsers = topUsers,
