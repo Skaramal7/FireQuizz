@@ -109,7 +109,7 @@ fun QuestionScreen(
                     }
                     IconButton(
                         onClick = {
-                            if (state.currentIndex == 9) {
+                            if (state.currentIndex == (quizz.lenght - 1)) {
                                 onFinish(state.score)
                             } else {
                                 selectedAnswer = null

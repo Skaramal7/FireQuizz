@@ -6,7 +6,9 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.core.content.ContextCompat
@@ -19,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase
 
 class MainActivity : ComponentActivity() {
     lateinit var quizzModelListState: SnapshotStateList<QuizzModel>
+    lateinit var isLoading: MutableState<Boolean>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +29,7 @@ class MainActivity : ComponentActivity() {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
 
         setContent {
+            isLoading = remember { mutableStateOf(true) }
             quizzModelListState = remember { mutableStateListOf<QuizzModel>() }
             getDataFromFirebase()
 
@@ -38,12 +42,14 @@ class MainActivity : ComponentActivity() {
                 onBoardClick = {
                     startActivity(Intent(this, LeaderboardActivity::class.java))
                 },
-                quizzModelListState
+                quizzModelListState,
+                isLoading.value
             )
         }
     }
 
     private fun getDataFromFirebase(){
+        isLoading.value = true
         FirebaseDatabase.getInstance().reference
             .get()
             .addOnSuccessListener { dataSnapshot ->
@@ -56,8 +62,10 @@ class MainActivity : ComponentActivity() {
                             Toast.makeText(this, "Unable to get data from Firebase", Toast.LENGTH_SHORT).show()
                         }
                     }
+
                 }
             }
+        isLoading.value = false
     }
 
     private fun questionList(): List<QuestionModel> {

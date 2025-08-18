@@ -21,6 +21,7 @@ data class QuestionModel(
 data class QuizzModel(
     val id: Int = 0,
     val title: String = "",
-    val lenght: Int = 0,
+    val length: Int = 0,
+    val score: Int = 0,
     val questionList: List<QuestionModel> = emptyList()
 ) : Parcelable

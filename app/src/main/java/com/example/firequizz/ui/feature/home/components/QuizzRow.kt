@@ -33,11 +33,6 @@ fun QuizzRow(
     quizz: QuizzModel,
     onItemClick: () -> Unit = {}
 ) {
-    val totalScore: Int = 0
-    for (question in quizz.questionList) {
-        totalScore + question.score
-    }
-
     Row (
         modifier = Modifier
             .fillMaxWidth()
@@ -67,7 +62,7 @@ fun QuizzRow(
                 Spacer(Modifier.width(4.dp))
 
                 Text(
-                    text = totalScore.toString(),
+                    text = quizz.score.toString(),
                     fontSize = 14.sp,
                     color = Color.Gray
                 )
@@ -75,7 +70,7 @@ fun QuizzRow(
             Spacer(Modifier.height(6.dp))
 
             Text(
-                text = "Questions: 10",
+                text = "Questions: ${quizz.lenght}",
                 fontSize = 14.sp,
                 color = Color.Gray
             )
