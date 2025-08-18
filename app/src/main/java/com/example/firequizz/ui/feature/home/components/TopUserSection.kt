@@ -1,4 +1,4 @@
-package com.example.firequizz.ui.feature.Dashboard.components
+package com.example.firequizz.ui.feature.home.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.example.firequizz" />
+                  <option name="mobileSdkAppId" value="1:793417456062:android:797dbdd7c2db83741581ef" />
+                  <option name="projectId" value="pdmfirequizz" />
+                  <option name="projectNumber" value="793417456062" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

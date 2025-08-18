@@ -1,4 +1,4 @@
-package com.example.firequizz.ui.feature.Dashboard.components
+package com.example.firequizz.ui.feature.home.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.sp
 import com.example.firequizz.R
 
 @Composable
-fun CategoryHeader(
+fun QuizzListHeader(
 
 ) {
     Row(
@@ -27,16 +27,10 @@ fun CategoryHeader(
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Text(
-            text = "Quizz Categories",
+            text = "Availabe Quizzes",
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             color = colorResource(R.color.navy_blue)
-        )
-
-        Text(
-            text = "See all",
-            fontSize = 20.sp,
-            color = colorResource(R.color.orange)
         )
     }
     
@@ -45,5 +39,5 @@ fun CategoryHeader(
 @Preview
 @Composable
 private fun CategoryHeaderPreview() {
-    CategoryHeader()
+    QuizzListHeader()
 }

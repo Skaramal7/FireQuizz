@@ -1,4 +1,4 @@
-package com.example.firequizz.ui.feature.Dashboard.components
+package com.example.firequizz.ui.feature.home.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.padding
@@ -13,6 +13,6 @@ fun Banner() {
     Image(
         painter = painterResource(R.drawable.banner),
         contentDescription = null,
-        modifier = Modifier.padding(24.dp)
+        modifier = Modifier.padding(5.dp)
     )
 }
